@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+    <Authors>Dan Hartley</Authors>
+    <Description>Reads header information from JPEG’s such as, width &amp; height dimensions (resolution). It only takes details from the jpeg headers. Making it fast, with low memory usage, because it does no image processing. Supports .Net standard 1.0 and above.</Description>
+    <PackageLicenseUrl>https://github.com/DanHarltey/JpegInfo/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/DanHarltey/JpegInfo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DanHarltey/JpegInfo.git</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>jpeg jpg width height dimensions metadata</PackageTags>
+	<Title>JpegInfo</Title>
+	<Summary>Reads header information from JPEG’s such as, width &amp; height dimensions (resolution).</Summary>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
