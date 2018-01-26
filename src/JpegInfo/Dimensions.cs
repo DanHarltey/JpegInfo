@@ -4,7 +4,7 @@
 
     public struct Dimensions
     {
-        private const int HeaderSize = 15;
+        private const int MinHeaderSize = 9;
 
         internal Dimensions(byte[] buffer)
         {
@@ -13,9 +13,9 @@
                 throw new ArgumentNullException(nameof(buffer));
             }
 
-            if(buffer.Length != HeaderSize)
+            if(Dimensions.MinHeaderSize > buffer.Length)
             {
-                throw new ArgumentException($"Must contain {HeaderSize} bytes.", nameof(buffer));
+                throw new ArgumentException($"Must contain at at least {Dimensions.MinHeaderSize} bytes.", nameof(buffer));
             }
 
             this.Height = JpegInfo.ReadLength(buffer, 1);

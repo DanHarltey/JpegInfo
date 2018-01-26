@@ -130,5 +130,18 @@
                 Assert.Equal(600, dimensions.Height);
             }
         }
+
+        [Fact]
+        public void GetDimensions_Gets_Dimensions_From_SOF0_With_CMYK()
+        {
+            // this image has I higher number of components than normal because of photometric interpretation CMYK
+            using (Stream fileStream = File.OpenRead(@"testimages\CMYK_SOF0_5100x3300.jpg"))
+            {
+                Dimensions dimensions = JpegInfo.GetDimensions(fileStream);
+
+                Assert.Equal(5100, dimensions.Width);
+                Assert.Equal(3300, dimensions.Height);
+            }
+        }
     }
 }
