@@ -3,7 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <Authors>Dan Hartley</Authors>
-    <Description>Reads header information from JPEG’s such as, width &amp; height dimensions (resolution). It only takes details from the jpeg headers. Making it fast, with low memory usage, because it does no image processing. Supports .Net standard 1.0 and above.</Description>
+    <Description>Reads header information from JPEG’s such as, width &amp; height dimensions (resolution). It only takes details from the jpeg headers. Making it fast, with low memory usage, because it does no image processing. 
+
+Supports .Net standard 1.0 and above. No unsafe context code. Under MIT licence. Unit tested.</Description>
     <PackageLicenseUrl>https://github.com/DanHarltey/JpegInfo/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/DanHarltey/JpegInfo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DanHarltey/JpegInfo.git</RepositoryUrl>
@@ -13,19 +15,22 @@
 	<Summary>Reads header information from JPEG’s such as, width &amp; height dimensions (resolution).</Summary>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.1</Version>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.0.2</Version>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors></WarningsAsErrors>
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public struct Dimensions
+    public readonly struct Dimensions
     {
         private const int MinHeaderSize = 9;
 
@@ -18,13 +18,13 @@
                 throw new ArgumentException($"Must contain at at least {Dimensions.MinHeaderSize} bytes.", nameof(buffer));
             }
 
-            this.Height = JpegInfo.ReadLength(buffer, 1);
-            this.Width = JpegInfo.ReadLength(buffer, 3);
+            this.Height = Jpeg.ReadLength(buffer, 1);
+            this.Width = Jpeg.ReadLength(buffer, 3);
         }
 
         /// <summary>
         /// The width of the image in pixels. Always above 0.
-        /// </summaWidthry>
+        /// </summary>
         public ushort Width { get; }
 
         /// <summary>
