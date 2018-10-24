@@ -8,6 +8,11 @@
         internal const byte FileMarker = 0xd8;
 
         /// <summary>
+        /// Start of the JFIF header, doesn't contain much
+        /// </summary>
+        internal static readonly byte APP0 = 0xe0;
+
+        /// <summary>
         /// Start Of Frame(baseline JPEG)
         /// </summary>
         internal const byte SOF0 = 0xc0;
@@ -23,7 +28,6 @@
     }
 }
 
-////           internal static readonly byte APP0_Marker = 0xe0;
 
 ////    // DQT(Define Quantization Table) marker:
 ////    internal static readonly byte DQT_Marker = 0xdb;

@@ -56,6 +56,56 @@
             return imageDetails;
         }
 
+        /// <summary>
+        /// Reads the passed stream and returns the jpeg headers.
+        /// It stops reading the stream at the end of the headers.
+        /// </summary>
+        /// <param name="jpegStream"></param>
+        /// <exception cref="InvalidJpegException">This exception is thrown when the passed stream does not conform to the jpeg standard.</exception>
+        /// <exception cref="StreamTooSmallException">This exception is thrown when the passed stream does not contain the required jpeg headers before the end of the stream.</exception>
+        /// <exception cref="BadSegmentSizeException">This exception is thrown when an attempt to recover from a bad segment size fails due to not finding a section marker before the end of the stream.</exception>
+        /// <returns>the image dimensions in pixels</returns>
+        public static JpegHeaders GetHeaders(Stream jpegStream)
+        {
+            Jpeg.ThrowIfNotJpeg(jpegStream);
+
+            JpegHeaders jpegHeaders = new JpegHeaders();
+
+            byte[] headerBuffer = new byte[4];
+
+            do
+            {
+                Jpeg.CheckedRead(jpegStream, headerBuffer);
+
+                if (headerBuffer[0] != Jpeg.SectionStartMarker)
+                {
+                    Jpeg.FindNextSegment(jpegStream, headerBuffer);
+                }
+
+                ushort length = Jpeg.ReadLength(headerBuffer, 2);
+
+                //TODO make this a seek if we do not need to read the data
+                byte[] headerData = new byte[length - 2];
+                Jpeg.CheckedRead(jpegStream, headerData);
+
+                if (headerBuffer[1] == Markers.SOF0 || headerBuffer[1] == Markers.SOF2)
+                {
+                    jpegHeaders.Dimensions = new Dimensions(headerData);
+                }
+                else if (headerBuffer[1] == Markers.APP0)
+                {
+                    jpegHeaders.JfifHeader = JfifHeader.Create(headerData);
+                }
+                else
+                {
+                    // APPn 0xe1 exif
+                }
+            }
+            while (headerBuffer[1] != Markers.SOS);
+
+            return jpegHeaders;
+        }
+
         private static void ThrowIfNotJpeg(Stream jpegStream)
         {
             if (jpegStream == null)

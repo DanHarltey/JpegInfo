@@ -1,4 +1,4 @@
-﻿namespace JpegInfo.Tests.testimages
+﻿namespace JpegInfo.Tests
 {
     using System.IO;
     using System.Linq;
