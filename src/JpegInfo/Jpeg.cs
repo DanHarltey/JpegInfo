@@ -3,6 +3,7 @@
     using global::JpegInfo.Exceptions;
     using System;
     using System.IO;
+    using System.Linq;
 
     public static class Jpeg
     {
@@ -96,9 +97,28 @@
                 {
                     jpegHeaders.JfifHeader = JfifHeader.Create(headerData);
                 }
-                else
+                else if (headerBuffer[1] == Markers.COM_Marker)
+                {
+                    Comments.Create(jpegHeaders, headerData);
+                }
+                else if (headerBuffer[1] == Markers.APPx1_Marker)
                 {
                     // APPn 0xe1 exif
+                    jpegHeaders.ExifHeaders = ExifHeaders.Create(headerData);
+                }
+                else if (headerBuffer[1] == Markers.APPx3_Marker
+                    || headerBuffer[1] == 0xdb
+                    || headerBuffer[1] == 0xc4
+                    || headerBuffer[1] == 0xdd
+                    || headerBuffer[1] == 0xdd
+
+
+                    || headerBuffer[1] == Markers.SOS)
+                {
+                }
+                else
+                {
+                    var asa = headerData.Select(x => (char)x).ToList();
                 }
             }
             while (headerBuffer[1] != Markers.SOS);

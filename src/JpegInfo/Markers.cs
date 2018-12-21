@@ -13,6 +13,16 @@
         internal static readonly byte APP0 = 0xe0;
 
         /// <summary>
+        /// Used for exif
+        /// </summary>
+        internal static readonly byte APPx1_Marker = 0xe1;
+
+        /// <summary>
+        /// Photoshop
+        /// </summary>
+        internal static readonly byte APPx3_Marker = 0xed;
+
+        /// <summary>
         /// Start Of Frame(baseline JPEG)
         /// </summary>
         internal const byte SOF0 = 0xc0;
@@ -25,6 +35,11 @@
         /// SOS(Start Of Scan) always the last marker before image data starts
         /// </summary>
         internal const byte SOS = 0xda;
+        
+        /// <summary>
+        /// Comment
+        /// </summary>
+        internal static readonly byte COM_Marker = 0xfe;    
     }
 }
 
@@ -46,15 +61,11 @@
 
 
 ////    // Other APPx segments
-////    internal static readonly byte APPx1_Marker = 0xe1;
-////    internal static readonly byte APPx2_Marker = 0xe2;
+////    
+//// 
+////    internal static readonly byte APPx2_Marker = 0xe2; // for icc profile
 ////    internal static readonly byte APPx5_Marker = 0xec;
-////    internal static readonly byte APPx3_Marker = 0xed;
 ////    internal static readonly byte APPx4_Marker = 0xee;
-
-////    // COM Comment, may be ignored
-////    internal static readonly byte COM_Marker = 0xfe;
-
 
 ////    // DRI(Define Restart Interval) 
 ////    internal static readonly byte DRI_Marker = 0xdd;
